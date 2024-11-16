@@ -1,22 +1,18 @@
+# calculate.py
 import circle
 import square
 
 figs = ['circle', 'square']
 funcs = ['perimeter', 'area']
-sizes = {
-    "area-circle": 1,
-    "perimeter-circle": 1,
-    "area-square": 1,
-    "perimeter-square": 1
-}
+sizes = {}
+
 
 def calc(fig, func, size):
-    assert fig in figs, f"Invalid figure: {fig}. Available options: {figs}"
-    assert func in funcs, f"Invalid function: {func}. Available options: {funcs}"
-
-    modules = {"circle": circle, "square": square}
-    result = getattr(modules[fig], func)(*size)
+    assert fig in figs
+    assert func in funcs
+    result = eval(f'{fig}.{func}(*{size})')
     return f'{func} of {fig} is {result}'
+
 
 if __name__ == "__main__":
     try:
@@ -31,11 +27,8 @@ if __name__ == "__main__":
             func = input(f"Enter function name, available are {funcs}:\n")
 
         while len(size) != sizes.get(f"{func}-{fig}", 1):
-            try:
-                size = list(map(int, input(
-                    "Input figure sizes separated by space, 1 for circle and square\n").split()))
-            except ValueError:
-                print("Invalid input. Please enter integers.")
+            size_input = input("Input figure sizes separated by space, 1 for circle and square\n")
+            size = list(map(int, size_input.split()))
 
         print(calc(fig, func, size))
     except KeyboardInterrupt:
