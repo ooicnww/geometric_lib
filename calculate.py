@@ -11,7 +11,7 @@ def calc(fig, func, size):
 	assert func in funcs
 
 	result = eval(f'{fig}.{func}(*{size})')
-	print(f'{func} of {fig} is {result}')
+	return (f'{func} of {fig} is {result}')
 
 if __name__ == "__main__":
 	func = ''
