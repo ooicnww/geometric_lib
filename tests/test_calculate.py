@@ -1,7 +1,7 @@
 import pytest
+from calculate import calc
 import circle
 import square
-from calculate import calc
 
 def test_calc_circle_area_valid():
     fig = 'circle'
@@ -9,7 +9,6 @@ def test_calc_circle_area_valid():
     size = [5]
 
     result = calc(fig, func, size)
-
     expected = f'area of circle is {circle.area(5)}'
     assert result == expected
 
@@ -19,7 +18,6 @@ def test_calc_circle_perimeter_valid():
     size = [5]
 
     result = calc(fig, func, size)
-
     expected = f'perimeter of circle is {circle.perimeter(5)}'
     assert result == expected
 
@@ -29,7 +27,6 @@ def test_calc_square_area_valid():
     size = [4]
 
     result = calc(fig, func, size)
-
     expected = f'area of square is {square.area(4)}'
     assert result == expected
 
@@ -39,14 +36,13 @@ def test_calc_square_perimeter_valid():
     size = [4]
 
     result = calc(fig, func, size)
-
     expected = f'perimeter of square is {square.perimeter(4)}'
     assert result == expected
 
 def test_calc_invalid_figure():
     fig = 'triangle'
     func = 'area'
-    size = [3, 4, 5]
+    size = [3]
 
     with pytest.raises(AssertionError):
         calc(fig, func, size)
